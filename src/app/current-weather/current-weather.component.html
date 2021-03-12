@@ -1,7 +1,10 @@
-<div>
+<div *ngIf='!current'>
+  Weather information could not be retrieved.
+</div>
+<div *ngIf='current'>
   <div>
-    <span>{{ current.city }}, {{ current.country }}</span>
-    <span> {{ current.date | date:'fullDate' }}</span>
+    <span>{{ current.city }}, {{ current.country }}&nbsp;</span>
+    <span>{{ current.date | date:'fullDate' }}</span>
   </div>
   <div>
     <img [src]='current.image'>
