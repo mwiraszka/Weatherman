@@ -9,7 +9,9 @@
     "build:prod": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "prenow:publish": "npm run build:prod",
+    "now:publish": "now --platform-version 2 dist/weatherman-app"
   },
   "private": true,
   "dependencies": {
