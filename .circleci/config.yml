@@ -23,13 +23,12 @@ jobs:
             - ~/.npm
 
       - run: npm run lint
-
       - run: npm run build:prod
       - run: npm run e2e
 
       - run:
           name: Tar & Gzip compiled app
-          command: tar zcf dist.tar.gz dist/local-weather-app
+          command: tar zcf dist.tar.gz dist/weatherman-app
       - store_artifacts:
           path: dist.tar.gz
 workflows:
