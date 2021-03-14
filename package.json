@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~11.2.4",
     "@angular/router": "~11.2.4",
     "rxjs": "~6.6.0",
+    "set-default-browser": "^1.1.2",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
   },
@@ -30,6 +31,7 @@
     "@angular/compiler-cli": "~11.2.4",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
+    "angular-unit-test-helper": "^11.0.2",
     "codelyzer": "^6.0.0",
     "dev-norms": "1.7.1",
     "jasmine-core": "~3.6.0",
