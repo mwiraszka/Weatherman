@@ -22,7 +22,6 @@ jobs:
           paths:
             - ~/.npm
 
-      - run: npm run style
       - run: npm run lint
 
       - run: npm run build:prod
