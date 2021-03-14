@@ -15,7 +15,7 @@ describe('CurrentWeatherComponent', () => {
   beforeEach(
     waitForAsync(() => {
       const weatherServiceSpy = jasmine.createSpyObj(
-        'WeatherService', ['getCurrentWeather',]
+        'WeatherService', [ 'getCurrentWeather', ]
       );
 
       TestBed.configureTestingModule(
@@ -60,6 +60,6 @@ describe('CurrentWeatherComponent', () => {
     const debugEl = fixture.debugElement;
     const titleEl: HTMLElement = debugEl.query(By.css('span')).nativeElement;
     expect(titleEl.textContent).toContain('Toronto');
-  })
-})
+  });
+});
 
