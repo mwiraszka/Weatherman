@@ -15,7 +15,7 @@ describe('CurrentWeatherComponent', () => {
   beforeEach(
     waitForAsync(() => {
       const weatherServiceSpy = jasmine.createSpyObj(
-        'WeatherService', [ 'getCurrentWeather', ]
+        'WeatherService', [ 'getCurrentWeather' ]
       );
 
       TestBed.configureTestingModule(
