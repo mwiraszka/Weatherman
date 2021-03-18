@@ -5,7 +5,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 const modules = [
   MatButtonModule, MatToolbarModule, MatIconModule
-]
+];
 
 @NgModule({
   declarations: [],
