@@ -1,0 +1,14 @@
+.right {
+  text-align: right;
+}
+.no-margin {
+  margin-bottom: 0;
+}
+img {
+  transform: scale(2, 2);
+  -ms-transform: scale(2, 2);
+  -webkit-transform: scale(2, 2);
+}
+.unit {
+  vertical-align: super;
+}

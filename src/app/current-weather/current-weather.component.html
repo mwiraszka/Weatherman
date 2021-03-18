@@ -2,15 +2,26 @@
   Weather information could not be retrieved.
 </div>
 <div *ngIf='current'>
-  <div>
-    <span>{{ current.city }}, {{ current.country }}&nbsp;</span>
-    <span>{{ current.date | date:'fullDate' }}</span>
+  <div fxLayout="row">
+    <div fxFlex="90%" class="mat-title no-margin">
+      {{ current.city }}, {{ current.country }}&nbsp;
+    </div>
+    <div fxFlex class="right mat-h3 no-margin">
+      {{ current.date | date:'EEEE' }}<br>
+      {{ current.date | date:'MMM d' }}<sup>{{ getOrdinal(current.date) }}</sup>
+    </div>
   </div>
-  <div>
-    <img [src]='current.image'>
-    <span>{{ current.temperature | number:'1.0-0' }}&#8451;</span>
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <div fxFlex="66%">
+      <img [src]='current.image'>
+    </div>
+    <div fxFlex class="right mat-display-3 no-margin">
+      {{ current.temperature | number:'1.0-0' }}<!--
+      remove blank space added by newline span element by adding this comment
+      --><span class="unit mat-display-1">&#8451;</span>
+    </div>
   </div>
-  <div>
+  <div fxLayout="row" fxLayoutAlign="center" class="mat-caption">
     {{ current.description }}
   </div>
 </div>

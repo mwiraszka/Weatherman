@@ -6,6 +6,8 @@ import { of } from 'rxjs';
 import { WeatherService } from '../weather/weather.service';
 import { fakeWeather } from '../weather/weather.service.fake';
 import { CurrentWeatherComponent } from './current-weather.component';
+import { MaterialModule } from '../material.module';
+
 
 describe('CurrentWeatherComponent', () => {
   let component: CurrentWeatherComponent;
@@ -21,6 +23,7 @@ describe('CurrentWeatherComponent', () => {
       TestBed.configureTestingModule(
         {
           declarations: [CurrentWeatherComponent],
+          imports: [MaterialModule],
           providers: [
             { provide: WeatherService, useValue: weatherServiceSpy }
           ],
@@ -58,7 +61,7 @@ describe('CurrentWeatherComponent', () => {
 
     // Assert on DOM
     const debugEl = fixture.debugElement;
-    const titleEl: HTMLElement = debugEl.query(By.css('span')).nativeElement;
+    const titleEl: HTMLElement = debugEl.query(By.css('.mat-title')).nativeElement;
     expect(titleEl.textContent).toContain('Toronto');
   });
 });
