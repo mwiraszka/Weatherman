@@ -61,7 +61,7 @@ export class WeatherService implements IWeatherService {
           return this.getCurrentWeatherHelper(uriParams);
         }
       })
-    )
+    );
   }
 
   getCurrentWeatherByCoords(coords: Coordinates): Observable<ICurrentWeather> {

@@ -7,10 +7,10 @@ import { PostalCodeService } from './postal-code.service';
 describe('PostalCodeService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({ imports: [HttpClientTestingModule] });
-  })
+  });
 
   it('should be created', () => {
     const service = injectClass(PostalCodeService);
     expect(service).toBeTruthy();
-  })
-})
+  });
+});

@@ -15,7 +15,7 @@ export class CurrentWeatherComponent {
   constructor(private weatherService: WeatherService) {
     this.current$ = this.weatherService.currentWeather$;
   }
-  
+
   getOrdinal(date: number): string {
     const n = new Date(date).getDate();
     return n > 0
