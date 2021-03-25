@@ -76,7 +76,6 @@ export class WeatherService implements IWeatherService {
       );
   }
 
-
   private getCurrentWeatherHelper(uriParams: HttpParams): Observable<ICurrentWeather> {
     uriParams = uriParams.set('appid', environment.appId);
     return this.httpClient

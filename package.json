@@ -30,6 +30,7 @@
     "@angular/router": "~11.2.4",
     "rxjs": "~6.6.0",
     "set-default-browser": "^1.1.2",
+    "subsink": "^1.0.2",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
   },
