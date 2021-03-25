@@ -12,6 +12,9 @@ import { Component } from '@angular/core';
           Forecasting the weather. Saving lives.
         </div>
       </div>
+      <div fxLayoutAlign="center">
+        <app-city-search></app-city-search>
+      </div>
       <div fxLayout="row">
         <div fxFlex></div>
         <mat-card fxFlex="300px">

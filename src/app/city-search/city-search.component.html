@@ -1,0 +1,13 @@
+<div class="row">
+  <form style="margin-bottom: 32px;">
+    <mat-form-field appearance="outline">
+      <mat-label>City Name or Postcode</mat-label>
+      <mat-icon matPrefix>search</mat-icon>
+      <input matInput aria-label="City or Postcode" [formControl]="search">
+      <mat-hint>e.g. 'Warsaw, Poland'</mat-hint>
+      <mat-error *ngIf="search.invalid">
+        {{ getErrorMessage() }}
+      </mat-error>
+    </mat-form-field>
+  </form>
+</div>
