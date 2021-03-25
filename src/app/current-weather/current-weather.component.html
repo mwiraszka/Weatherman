@@ -1,7 +1,4 @@
-<div *ngIf='!current'>
-  Weather information could not be retrieved.
-</div>
-<div *ngIf='current'>
+<div *ngIf='current$ | async as current; else loading'>
   <div fxLayout="row">
     <div fxFlex="90%" class="mat-title no-margin">
       {{ current.city }}, {{ current.country }}&nbsp;
@@ -25,3 +22,6 @@
     {{ current.description }}
   </div>
 </div>
+<ng-template #loading>
+  Loading...
+</ng-template>
