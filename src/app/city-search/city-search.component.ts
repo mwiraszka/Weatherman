@@ -10,9 +10,9 @@ import { WeatherService } from '../weather/weather.service';
   styleUrls: ['./city-search.component.css']
 })
 export class CitySearchComponent implements OnInit {
-  search = new FormControl('Toronto, Canada', [
+  search = new FormControl('', [
     Validators.minLength(2),
-    Validators.pattern('^[a-zA-Z]+$')
+    Validators.pattern('^[a-zA-Z0-9, ]*$')
   ]);
 
   constructor(private weatherService: WeatherService) {
@@ -25,10 +25,10 @@ export class CitySearchComponent implements OnInit {
         (searchValue: string) => {
           if (!this.search.invalid) {
             const userInput = searchValue.split(',').map(s => s.trim());
-            this.weatherService.getCurrentWeather(
+            this.weatherService.updateCurrentWeather(
               userInput[0],
               userInput.length > 1 ? userInput[1] : undefined
-            ).subscribe(data => (console.log(data)));
+            );
           }
         }
       );
@@ -38,7 +38,7 @@ export class CitySearchComponent implements OnInit {
     if (this.search.hasError('minlength')) {
       return 'Please input more than one character';
     } else if (this.search.hasError('pattern')) {
-      return 'Please input only letters';
+      return 'Please input a valid city name or postcode';
     } else {
       return '';
     }
