@@ -19,15 +19,15 @@ export class CitySearchComponent {
   constructor(private weatherService: WeatherService) {
     this.search.valueChanges
       .pipe(
-        debounceTime(500),  // search at most once every half-second
+        debounceTime(500),
         filter(() => !this.search.invalid),
         tap((searchValue: string) => this.doSearch(searchValue))
       )
       .subscribe();
   }
 
-  doSearch(searchValue: string) {
-    const userInput = searchValue.split(',').map(s => s.trim());
+  doSearch(searchValue: string): void {
+    const userInput = searchValue.split(',').map((s) => s.trim());
     const searchText = userInput[0];
     const country = userInput.length > 1 ? userInput[1] : undefined;
     this.weatherService.updateCurrentWeather(searchText, country);
