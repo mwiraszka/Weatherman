@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs'; 
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
@@ -45,7 +45,7 @@ export class WeatherService implements IWeatherService {
     image: '',
     temperature: 0,
     description: ''
-  })
+  });
 
   getCurrentWeather(
     search: string | number,
@@ -73,7 +73,7 @@ export class WeatherService implements IWeatherService {
     this.getCurrentWeather(search, country)
       .subscribe(weather =>
         this.currentWeather$.next(weather)
-      )
+      );
   }
 
 

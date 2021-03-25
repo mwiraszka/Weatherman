@@ -22,6 +22,6 @@ export class CurrentWeatherComponent implements OnInit {
 
   ngOnInit(): void {
     this.weatherService.currentWeather$
-      .subscribe(data => (this.current = data))
+      .subscribe(data => (this.current = data));
   }
 }
