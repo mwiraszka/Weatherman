@@ -14,7 +14,7 @@ export class CitySearchComponent implements OnInit {
     Validators.minLength(2),
     Validators.pattern('^[a-zA-Z]+$')
   ]);
-  
+
   constructor(private weatherService: WeatherService) {
   }
 
@@ -34,7 +34,7 @@ export class CitySearchComponent implements OnInit {
       );
   }
 
-  getErrorMessage() {
+  getErrorMessage(): string {
     if (this.search.hasError('minlength')) {
       return 'Please input more than one character';
     } else if (this.search.hasError('pattern')) {

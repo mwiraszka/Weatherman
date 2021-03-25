@@ -14,8 +14,8 @@ interface ICurrentWeatherData {
   name: string;
 }
 interface Coordinates {
-  latitude: number,
-  longitude: number
+  latitude: number;
+  longitude: number;
 }
 
 export interface IWeatherService {
@@ -31,12 +31,12 @@ export interface IWeatherService {
 @Injectable({ providedIn: 'root' })
 export class WeatherService implements IWeatherService {
   constructor(private httpClient: HttpClient) {}
-  
+
   getCurrentWeather(
     search: string | number,
     country?: string
   ): Observable<ICurrentWeather> {
-    let uriParams = new HttpParams()
+    let uriParams = new HttpParams();
     if (typeof search === 'string') {
       uriParams = uriParams.set('q', country ? `${search},${country}` : search);
     } else {
