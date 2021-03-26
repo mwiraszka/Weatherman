@@ -27,9 +27,7 @@ export interface IWeatherService {
   updateCurrentWeather(search: string, country?: string): void;
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class WeatherService implements IWeatherService {
   readonly currentWeather$ = new BehaviorSubject<ICurrentWeather>({
     city: '--',
@@ -46,7 +44,6 @@ export class WeatherService implements IWeatherService {
   ) {}
 
   getCurrentWeather(searchText: string, country?: string): Observable<ICurrentWeather> {
-    console.log('inside getCurrentWeather... searchText: ' + searchText);
     return this.postalCodeService.resolvePostalCode(searchText).pipe(
       switchMap((postalCode) => {
         console.log(postalCode);

@@ -21,9 +21,7 @@ export interface IPostalCodeService {
   resolvePostalCode(postalCode: string): Observable<IPostalCode>;
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class PostalCodeService implements IPostalCodeService {
   constructor(private httpClient: HttpClient) {
   }
