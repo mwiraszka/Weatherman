@@ -35,6 +35,6 @@ import { environment } from './../environments/environment';
 })
 export class AppComponent {
   constructor() {
-    console.log(environment);
+    console.log('production environment: ' + environment.production);
   }
 }
