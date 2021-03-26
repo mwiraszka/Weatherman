@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { environment } from './../environments/environment';
 
 @Component({
   selector: 'app-root',
   template: `
     <div>
-      <mat-toolbar color="primary">
+      <mat-toolbar color="primary" style="font-size: 22px;">
         <span>Weatherman</span>
       </mat-toolbar>
       <div fxLayoutAlign="center">
@@ -21,7 +20,7 @@ import { environment } from './../environments/environment';
         <mat-card fxFlex="300px">
           <mat-card-header>
             <mat-card-title>
-              <div class="mat-headline">Current Weather</div>
+              <div class="mat-headline">Current Weather...</div>
             </mat-card-title>
           </mat-card-header>
           <mat-card-content>
@@ -33,8 +32,4 @@ import { environment } from './../environments/environment';
     </div>
   `
 })
-export class AppComponent {
-  constructor() {
-    console.log('production environment: ' + environment.production);
-  }
-}
+export class AppComponent {}

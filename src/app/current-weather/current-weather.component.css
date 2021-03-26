@@ -3,11 +3,13 @@
 }
 .no-margin {
   margin-bottom: 0;
+  margin-top: 0;
 }
 img {
   transform: scale(2, 2);
   -ms-transform: scale(2, 2);
   -webkit-transform: scale(2, 2);
+  margin-left: 10px;
 }
 .unit {
   vertical-align: super;
