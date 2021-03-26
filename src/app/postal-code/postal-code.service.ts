@@ -9,7 +9,7 @@ export interface IPostalCode {
   countryCode: string;
   postalCode: string;
   placeName: string;
-  lon: number;
+  lng: number;
   lat: number;
 }
 
@@ -40,7 +40,7 @@ export class PostalCodeService implements IPostalCodeService {
         { params: uriParams }
       )
       .pipe(
-        mergeMap((data) => data.postalCodes),
+        mergeMap(data => data.postalCodes),
         defaultIfEmpty(null)
       );
   }
