@@ -6,11 +6,10 @@
     "ng": "ng",
     "start": "ng serve --port 5000",
     "build": "ng build",
-    "build:prod": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "prenow:publish": "npm run build:prod",
+    "prenow:publish": "npm run build --prod",
     "now:publish": "now --platform-version 2 dist/weatherman-app",
     "test:a11y": "pa11y --standard Section508 http://localhost:5000",
     "test:a11y:ci": "pa11y-ci"
