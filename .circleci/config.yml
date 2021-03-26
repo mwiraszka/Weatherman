@@ -22,9 +22,9 @@ jobs:
           paths:
             - ~/.npm
 
-      - run: npm run lint
+      #- run: npm run lint
       - run: npm run build:prod
-      - run: npm run e2e
+      #- run: npm run e2e
 
       # Test app accessibility against rulesets of Section 508
       # (currently only tests an already-deployed version of the app)
