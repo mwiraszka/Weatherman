@@ -70,7 +70,6 @@ export class WeatherService implements IWeatherService {
     const uriParams = new HttpParams()
       .set('lat', coords.latitude.toString())
       .set('lon', coords.longitude.toString());
-      console.log('inside getCurrentWeatherByCoords... uriParams: ' + uriParams);
     return this.getCurrentWeatherHelper(uriParams);
   }
 
