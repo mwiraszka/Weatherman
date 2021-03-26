@@ -13,7 +13,7 @@ export class CitySearchComponent {
   search = new FormControl('', [
     Validators.required,
     Validators.minLength(2),
-    Validators.pattern('^[a-zA-Z0-9, ]*$')
+    Validators.pattern('^[a-zA-Z0-9,. ]*$')
   ]);
 
   constructor(private weatherService: WeatherService) {

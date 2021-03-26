@@ -14,7 +14,7 @@ jobs:
       - run: npm ci
 
       # Force update webdriver, so it runs with latest version of Chrome
-      # - run: cd ./node_modules/protractor && npm i webdriver-manager@latest
+      - run: cd ./node_modules/protractor && npm i webdriver-manager@latest
 
       # Since using "npm ci" to install NPM dependencies, cache "~/.npm" folder
       - save_cache:
@@ -22,9 +22,9 @@ jobs:
           paths:
             - ~/.npm
 
-      #- run: npm run lint
+      - run: npm run lint
       - run: npm run build:prod
-      #- run: npm run e2e
+      - run: npm run e2e
 
       # Test app accessibility against rulesets of Section 508
       # (currently only tests an already-deployed version of the app)
@@ -39,4 +39,4 @@ workflows:
   version: 2
   build-and-test:
     jobs:
-      - build:prod
+      - build
