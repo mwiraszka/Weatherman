@@ -13,7 +13,21 @@
     "prenow:publish": "ng build --prod",
     "now:publish": "now --platform-version 2 dist/weatherman-app",
     "test:a11y": "pa11y --standard Section508 http://localhost:5000",
-    "test:a11y:ci": "pa11y-ci"
+    "test:a11y:ci": "pa11y-ci",
+    "predocker:build": "npm run build",
+    "docker:build": "cross-conf-env docker image build . -t $npm_package_config_imageRepo:$npm_package_version",
+    "postdocker:build": "npm run docker:tag",
+    "docker:tag": " cross-conf-env docker image tag $npm_package_config_imageRepo:$npm_package_version $npm_package_config_imageRepo:latest",
+    "docker:stop": "cross-conf-env docker stop $npm_package_config_imageName || true",
+    "docker:run": "run-s -c docker:stop docker:runHelper",
+    "docker:runHelper": "cross-conf-env docker run -e NODE_ENV=local --rm --name $npm_package_config_imageName -d -p $npm_package_config_imagePort:$npm_package_config_internalContainerPort $npm_package_config_imageRepo",
+    "predocker:publish": "echo Attention! Ensure `docker login` information is correct.",
+    "docker:publish": "cross-conf-env docker image push $npm_package_config_imageRepo:$npm_package_version",
+    "postdocker:publish": "cross-conf-env docker image push $npm_package_config_imageRepo:latest",
+    "docker:taillogs": "echo Web Server Logs: && cross-conf-env docker logs -f $npm_package_config_imageName",
+    "docker:open": "sleep 2 && cross-conf-env open-cli http://localhost:$npm_package_config_imagePort",
+    "docker:debugmessage": "echo Docker Debug Completed Successfully! Hit Ctrl+C to terminate log tailing.",
+    "docker:debug": "run-s -cs docker:build docker:run docker:open docker:debugmessage docker:taillogs"
   },
   "private": true,
   "dependencies": {
@@ -42,6 +56,7 @@
     "@types/node": "^12.11.1",
     "angular-unit-test-helper": "^11.0.2",
     "codelyzer": "^6.0.0",
+    "cross-conf-env": "^1.2.1",
     "dev-norms": "1.7.1",
     "http-server": "^0.12.3",
     "jasmine-core": "~3.6.0",
@@ -51,11 +66,19 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "npm-run-all": "^4.1.5",
+    "open-cli": "^6.0.1",
     "pa11y": "^5.3.0",
     "pa11y-ci": "^2.4.0",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~4.1.5"
+  },
+  "config": {
+    "imageRepo": "[namespace]/[repository]",
+    "imageName": "custom_app_name",
+    "imagePort": "3000",
+    "internalContainerPort": "3000"
   }
 }
