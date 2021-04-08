@@ -1,25 +1,49 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
+import {
+  ObservablePropertyStrategy,
+  autoSpyObj,
+  injectSpy,
+} from 'angular-unit-test-helper'
+import { of } from 'rxjs'
 
-import { CitySearchComponent } from './city-search.component';
+import { MaterialModule } from '../material.module'
+import { WeatherService } from '../weather/weather.service'
+import { CitySearchComponent } from './city-search.component'
 
 describe('CitySearchComponent', () => {
-  let component: CitySearchComponent;
-  let fixture: ComponentFixture<CitySearchComponent>;
+  let component: CitySearchComponent
+  let fixture: ComponentFixture<CitySearchComponent>
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ CitySearchComponent ]
+  let weatherServiceMock: jasmine.SpyObj<WeatherService>
+
+  beforeEach(
+    waitForAsync(() => {
+      const weatherServiceSpy = autoSpyObj(
+        WeatherService,
+        ['currentWeather$'],
+        ObservablePropertyStrategy.BehaviorSubject
+      )
+
+      TestBed.configureTestingModule({
+        declarations: [CitySearchComponent],
+        imports: [MaterialModule, FormsModule, ReactiveFormsModule, NoopAnimationsModule],
+        providers: [{ provide: WeatherService, useValue: weatherServiceSpy }],
+      }).compileComponents()
+
+      weatherServiceMock = injectSpy(WeatherService)
     })
-    .compileComponents();
-  });
+  )
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CitySearchComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(CitySearchComponent)
+    component = fixture.componentInstance
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    weatherServiceMock.getCurrentWeather.and.returnValue(of())
+    fixture.detectChanges() // triggers ngOnInit
+    expect(component).toBeTruthy()
+  })
+})
