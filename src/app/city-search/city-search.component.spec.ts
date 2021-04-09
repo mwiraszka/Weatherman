@@ -1,22 +1,22 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { NoopAnimationsModule } from '@angular/platform-browser/animations'
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {
   ObservablePropertyStrategy,
   autoSpyObj,
   injectSpy,
-} from 'angular-unit-test-helper'
-import { of } from 'rxjs'
+} from 'angular-unit-test-helper';
+import { of } from 'rxjs';
 
-import { MaterialModule } from '../material.module'
-import { WeatherService } from '../weather/weather.service'
-import { CitySearchComponent } from './city-search.component'
+import { MaterialModule } from '../material.module';
+import { WeatherService } from '../weather/weather.service';
+import { CitySearchComponent } from './city-search.component';
 
 describe('CitySearchComponent', () => {
-  let component: CitySearchComponent
-  let fixture: ComponentFixture<CitySearchComponent>
+  let component: CitySearchComponent;
+  let fixture: ComponentFixture<CitySearchComponent>;
 
-  let weatherServiceMock: jasmine.SpyObj<WeatherService>
+  let weatherServiceMock: jasmine.SpyObj<WeatherService>;
 
   beforeEach(
     waitForAsync(() => {
@@ -24,26 +24,26 @@ describe('CitySearchComponent', () => {
         WeatherService,
         ['currentWeather$'],
         ObservablePropertyStrategy.BehaviorSubject
-      )
+      );
 
       TestBed.configureTestingModule({
         declarations: [CitySearchComponent],
         imports: [MaterialModule, FormsModule, ReactiveFormsModule, NoopAnimationsModule],
         providers: [{ provide: WeatherService, useValue: weatherServiceSpy }],
-      }).compileComponents()
+      }).compileComponents();
 
-      weatherServiceMock = injectSpy(WeatherService)
+      weatherServiceMock = injectSpy(WeatherService);
     })
-  )
+  );
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CitySearchComponent)
-    component = fixture.componentInstance
-  })
+    fixture = TestBed.createComponent(CitySearchComponent);
+    component = fixture.componentInstance;
+  });
 
   it('should create', () => {
-    weatherServiceMock.getCurrentWeather.and.returnValue(of())
-    fixture.detectChanges() // triggers ngOnInit
-    expect(component).toBeTruthy()
-  })
-})
+    weatherServiceMock.getCurrentWeather.and.returnValue(of());
+    fixture.detectChanges(); // triggers ngOnInit
+    expect(component).toBeTruthy();
+  });
+});
