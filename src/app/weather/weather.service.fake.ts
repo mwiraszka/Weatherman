@@ -1,4 +1,4 @@
-import { ICurrentWeather } from '../interfaces';
+import { ICurrentWeather } from '../interfaces'
 
 export const fakeWeather: ICurrentWeather = {
   city: 'Toronto',
@@ -6,5 +6,5 @@ export const fakeWeather: ICurrentWeather = {
   date: 1485789600,
   image: '',
   temperature: 500, // Kelvin
-  description: 'apocalypse'
-};
+  description: 'apocalypse',
+}

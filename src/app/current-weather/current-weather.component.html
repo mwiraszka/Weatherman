@@ -13,7 +13,8 @@
       <img [src]="current.image" [alt]="current.description" />
     </div>
     <div fxFlex class="right mat-display-3 no-margin">
-      {{ current.temperature | number:'1.0-0' }}<!--
+      {{ current.temperature | number:'1.0-0' }}
+      <!--
       remove blank space added by newline span element by adding this comment
       --><span class="unit mat-display-1">&#8451;</span>
     </div>

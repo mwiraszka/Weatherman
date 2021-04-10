@@ -1,30 +1,30 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { HttpClient, HttpParams } from '@angular/common/http'
+import { Injectable } from '@angular/core'
+import { BehaviorSubject, Observable } from 'rxjs'
+import { map, switchMap } from 'rxjs/operators'
 
-import { environment } from '../../environments/environment';
-import { ICurrentWeather } from '../interfaces';
-import { PostalCodeService } from '../postal-code/postal-code.service';
+import { environment } from '../../environments/environment'
+import { ICurrentWeather } from '../interfaces'
+import { PostalCodeService } from '../postal-code/postal-code.service'
 
 export interface ICurrentWeatherData {
-  weather: [{ description: string, icon: string }];
-  main: { temp: number };
-  sys: { country: string };
-  dt: number;
-  name: string;
+  weather: [{ description: string; icon: string }]
+  main: { temp: number }
+  sys: { country: string }
+  dt: number
+  name: string
 }
 
 interface Coordinates {
-  latitude: number;
-  longitude: number;
+  latitude: number
+  longitude: number
 }
 
 export interface IWeatherService {
-  readonly currentWeather$: BehaviorSubject<ICurrentWeather>;
-  getCurrentWeather(search: string, country?: string): Observable<ICurrentWeather>;
-  getCurrentWeatherByCoords(coords: Coordinates): Observable<ICurrentWeather>;
-  updateCurrentWeather(search: string, country?: string): void;
+  readonly currentWeather$: BehaviorSubject<ICurrentWeather>
+  getCurrentWeather(search: string, country?: string): Observable<ICurrentWeather>
+  getCurrentWeatherByCoords(coords: Coordinates): Observable<ICurrentWeather>
+  updateCurrentWeather(search: string, country?: string): void
 }
 
 @Injectable({ providedIn: 'root' })
@@ -35,8 +35,8 @@ export class WeatherService implements IWeatherService {
     date: Date.now(),
     image: '',
     temperature: 0,
-    description: ''
-  });
+    description: '',
+  })
 
   constructor(
     private httpClient: HttpClient,
@@ -46,57 +46,58 @@ export class WeatherService implements IWeatherService {
   getCurrentWeather(searchText: string, country?: string): Observable<ICurrentWeather> {
     return this.postalCodeService.resolvePostalCode(searchText).pipe(
       switchMap((postalCode) => {
-        console.log(postalCode);
+        console.log(postalCode)
         if (postalCode) {
           return this.getCurrentWeatherByCoords({
             latitude: postalCode.lat,
-            longitude: postalCode.lng
-          } as Coordinates);
+            longitude: postalCode.lng,
+          } as Coordinates)
         } else {
           const uriParams = new HttpParams().set(
             'q',
             country ? `${searchText},${country}` : searchText
-          );
-          return this.getCurrentWeatherHelper(uriParams);
+          )
+          return this.getCurrentWeatherHelper(uriParams)
         }
       })
-    );
+    )
   }
 
   getCurrentWeatherByCoords(coords: Coordinates): Observable<ICurrentWeather> {
     const uriParams = new HttpParams()
       .set('lat', coords.latitude.toString())
-      .set('lon', coords.longitude.toString());
-    return this.getCurrentWeatherHelper(uriParams);
+      .set('lon', coords.longitude.toString())
+    return this.getCurrentWeatherHelper(uriParams)
   }
 
   updateCurrentWeather(search: string, country?: string): void {
-    this.getCurrentWeather(search, country)
-      .subscribe(weather => this.currentWeather$.next(weather));
+    this.getCurrentWeather(search, country).subscribe((weather) =>
+      this.currentWeather$.next(weather)
+    )
   }
 
   private getCurrentWeatherHelper(uriParams: HttpParams): Observable<ICurrentWeather> {
-    uriParams = uriParams.set('appid', environment.appId);
+    uriParams = uriParams.set('appid', environment.appId)
     return this.httpClient
       .get<ICurrentWeatherData>(
         `${environment.baseUrl}api.openweathermap.org/data/2.5/weather`,
-          { params: uriParams }
+        { params: uriParams }
       )
-      .pipe(map((data) => this.transformToICurrentWeather(data)));
+      .pipe(map((data) => this.transformToICurrentWeather(data)))
   }
 
   private transformToICurrentWeather(data: ICurrentWeatherData): ICurrentWeather {
     return {
       city: data.name,
       country: data.sys.country,
-      date: data.dt * 1000,  // Convert server's timestamp (supplied in s) to a JS timestamp in ms
+      date: data.dt * 1000, // Convert server's timestamp (supplied in s) to a JS timestamp in ms
       image: `http://openweathermap.org/img/w/${data.weather[0].icon}.png`,
       temperature: this.convertKelvinToCelsius(data.main.temp),
       description: data.weather[0].description,
-    };
+    }
   }
 
   private convertKelvinToCelsius(kelvin: number): number {
-    return kelvin - 273.15;
+    return kelvin - 273.15
   }
 }

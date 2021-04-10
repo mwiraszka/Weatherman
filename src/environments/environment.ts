@@ -7,8 +7,8 @@ export const environment = {
   appId: '2afa8f07bddea63ef2efbe6bf12fe17d',
   baseUrl: 'http://',
   username: 'weatherman91',
-  geonamesApi: 'api'
-};
+  geonamesApi: 'api',
+}
 
 /*
  * For easier debugging in development mode, you can import the following file

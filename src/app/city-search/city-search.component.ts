@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
-import { debounceTime, filter, tap } from 'rxjs/operators';
+import { Component } from '@angular/core'
+import { FormControl, Validators } from '@angular/forms'
+import { debounceTime, filter, tap } from 'rxjs/operators'
 
-import { WeatherService } from '../weather/weather.service';
+import { WeatherService } from '../weather/weather.service'
 
 @Component({
   selector: 'app-city-search',
@@ -12,8 +12,8 @@ export class CitySearchComponent {
   search = new FormControl('', [
     Validators.required,
     Validators.minLength(2),
-    Validators.pattern('^[a-zA-Z0-9,. ]*$')
-  ]);
+    Validators.pattern('^[a-zA-Z0-9,. ]*$'),
+  ])
 
   constructor(private weatherService: WeatherService) {
     this.search.valueChanges
@@ -22,23 +22,23 @@ export class CitySearchComponent {
         filter(() => !this.search.invalid),
         tap((searchValue: string) => this.doSearch(searchValue))
       )
-      .subscribe();
+      .subscribe()
   }
 
   doSearch(searchValue: string): void {
-    const userInput = searchValue.split(',').map((s) => s.trim());
-    const searchText = userInput[0];
-    const country = userInput.length > 1 ? userInput[1] : undefined;
-    this.weatherService.updateCurrentWeather(searchText, country);
+    const userInput = searchValue.split(',').map((s) => s.trim())
+    const searchText = userInput[0]
+    const country = userInput.length > 1 ? userInput[1] : undefined
+    this.weatherService.updateCurrentWeather(searchText, country)
   }
 
   getErrorMessage(): string {
     if (this.search.hasError('minlength')) {
-      return 'Please input more than one character';
+      return 'Please input more than one character'
     } else if (this.search.hasError('pattern')) {
-      return 'Please input a valid city name or postcode';
+      return 'Please input a valid city name or postcode'
     } else {
-      return '';
+      return ''
     }
   }
 }
