@@ -1,19 +1,14 @@
-html, body {
-  height: 100%;
-}
+html, body { height: 100%; }
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: #fcfcfc;
 }
+
 .vertical-margin {
   margin-top: 16px;
   margin-bottom: 16px;
 }
 
-.mat-caption {
-  font-size: 15px;
-}
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mat-caption { font-size: 15px; }

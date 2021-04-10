@@ -1,27 +1,45 @@
-# WeathermanApp
+# Weatherman
+<i>Reporting the weather. Saving lives.</i>
+<hr><br>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.3.
+[Weatherman](https://www.weatherman-mwiraszka.vercel.app) is a desktop application generated using [Angular CLI](https://github.com/angular/angular-cli) (version 11.2.3) and deployed to [Vercel](https://vercel.com/). The app retrieves the current weather for any inputted location –– either by city name or postcode –– through requests to [OpenWeatherMap](https://openweathermap.org/) and [GeoNames](https://www.geonames.org/)' APIs. Weatherman features a fully-responsive frontend design, leveraging Angular Material and Flexbox, as well as an intuitive UX through its robust form validators and search-as-you-type functionality.
 
-## Development server
+## Project Contribution
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:5000/`. The app will automatically reload if you change any of the source files.
+If you wish to contribute to the development of this project, the following commands will get you started:
 
-## Code scaffolding
+* Run `ng serve` for a development server. Navigate to `http://localhost:5000/`. The app will automatically reload if you change any of the source files.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+* Run `ng generate component <component-name>` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+* Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+* Run `ng test` to execute unit tests via [Karma](https://karma-runner.github.io).
 
-## Running unit tests
+* Run `ng e2e` to execute end-to-end tests via [Protractor](http://www.protractortest.org/).
+<br><br>
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Versioning
 
-## Running end-to-end tests
+This project uses [SemVer](http://semver.org) for versioning.
+* <i>10.04.2021</i> - **Version 1.0.0**:
+    * Initial release
+<br><br>
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Author(s)
 
-## Further help
+* [Michal Wiraszka](https://github.com/mwiraszka)
+<br><br>
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+<br><br>
+
+## Acknowledgments
+
+* [Doguhan Uluca](https://github.com/duluca "Doguhan's Github page") for sharing his wealth of knowledge on the topics of Angular, its many features, as well as the broader world of Web Development. 
+<br><br>
+
+## Application Screenshot
+![Weatherman Screenshot](src/assets/img/weatherman-screenshot.png "Weatherman Screenshot")
