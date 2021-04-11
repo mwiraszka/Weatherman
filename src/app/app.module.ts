@@ -11,11 +11,7 @@ import { CurrentWeatherComponent } from './current-weather/current-weather.compo
 import { MaterialModule } from './material.module'
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    CitySearchComponent,
-    CurrentWeatherComponent,
-  ],
+  declarations: [AppComponent, CitySearchComponent, CurrentWeatherComponent],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,

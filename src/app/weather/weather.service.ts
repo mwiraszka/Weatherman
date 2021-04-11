@@ -29,7 +29,6 @@ export interface IWeatherService {
 
 @Injectable({ providedIn: 'root' })
 export class WeatherService implements IWeatherService {
-
   // Initialize behavior subject with some dummy data
   readonly currentWeather$ = new BehaviorSubject<ICurrentWeather>({
     city: 'New New York',
