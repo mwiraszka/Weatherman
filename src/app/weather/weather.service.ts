@@ -29,13 +29,15 @@ export interface IWeatherService {
 
 @Injectable({ providedIn: 'root' })
 export class WeatherService implements IWeatherService {
+
+  // Initialize behavior subject with some dummy data
   readonly currentWeather$ = new BehaviorSubject<ICurrentWeather>({
-    city: '--',
-    country: '--',
+    city: 'New New York',
+    country: 'Planet Earth',
     date: Date.now(),
-    image: '',
-    temperature: 0,
-    description: '',
+    image: '../../assets/img/sunny.svg',
+    temperature: 50,
+    description: 'super sunny',
   })
 
   constructor(

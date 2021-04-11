@@ -12,9 +12,13 @@ export class CitySearchComponent {
   search = new FormControl('', [
     Validators.required,
     Validators.minLength(2),
+    Validators.maxLength(30),
     Validators.pattern('^[a-zA-Z0-9,. ]*$'),
   ])
 
+  // Wait .5s between keyups to emit next value; only emit if
+  // form validators pass; send value to doSearch method as a
+  // side effect with tap operator so that subscription persists
   constructor(private weatherService: WeatherService) {
     this.search.valueChanges
       .pipe(
@@ -26,6 +30,8 @@ export class CitySearchComponent {
   }
 
   doSearch(searchValue: string): void {
+    // Check for comma char; if exists, split at the comma and trim white
+    // space and store everything after the comma as the country name
     const userInput = searchValue.split(',').map((s) => s.trim())
     const searchText = userInput[0]
     const country = userInput.length > 1 ? userInput[1] : undefined
@@ -35,6 +41,8 @@ export class CitySearchComponent {
   getErrorMessage(): string {
     if (this.search.hasError('minlength')) {
       return 'Please input more than one character'
+    } else if (this.search.hasError('maxlength')) {
+      return 'Please try a shorter location name'
     } else if (this.search.hasError('pattern')) {
       return 'Please input a valid city name or postcode'
     } else {
