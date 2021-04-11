@@ -38,7 +38,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-* [Doguhan Uluca](https://github.com/duluca "Doguhan's Github page") for sharing his wealth of knowledge on the topics of Angular, its many features, as well as the broader world of Web Development. 
+* [Doguhan Uluca](https://github.com/duluca "Doguhan's Github page") for sharing his wealth of knowledge on everything Angular
 <br><br>
 
 ## Application Screenshot
