@@ -2,7 +2,7 @@
 <i>Reporting the weather. Saving lives.</i>
 <hr><br>
 
-[Weatherman](https://www.weatherman-mwiraszka.vercel.app) is a desktop application generated using [Angular CLI](https://github.com/angular/angular-cli) (version 11.2.3) and deployed to [Vercel](https://vercel.com/). The app retrieves the current weather for any inputted location –– either by city name or postcode –– through requests to [OpenWeatherMap](https://openweathermap.org/) and [GeoNames](https://www.geonames.org/)' APIs. Weatherman features a fully-responsive frontend design, leveraging Angular Material and Flexbox, as well as an intuitive UX through its robust form validators and search-as-you-type functionality.
+[Weatherman](https://www.weatherman-mwiraszka.vercel.app) is a desktop application generated using [Angular CLI](https://github.com/angular/angular-cli) (version 11.2.3) and deployed to [Vercel](https://vercel.com/). The app retrieves the current weather for any inputted location –– either by city name or postal code –– through requests to [OpenWeatherMap](https://openweathermap.org/) and [GeoNames](https://www.geonames.org/)' APIs. Weatherman features a modern and intuitive UX through a set of robust form validators, search-as-you-type functionality, as well as Angular Material's many components and style themes.
 
 ## Project Contribution
 
@@ -22,7 +22,7 @@ If you wish to contribute to the development of this project, the following comm
 ## Versioning
 
 This project uses [SemVer](http://semver.org) for versioning.
-* <i>10.04.2021</i> - **Version 1.0.0**:
+* <i>13.04.2021</i> - **Version 1.0.0**:
     * Initial release
 <br><br>
 
@@ -42,4 +42,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 <br><br>
 
 ## Application Screenshot
-![Weatherman Screenshot](src/assets/img/weatherman-screenshot.png "Weatherman Screenshot")
+![Weatherman Screenshot 1](src/assets/img/screenshot-1.png "Weatherman - Landing Page")
+![Weatherman Screenshot 2](src/assets/img/screenshot-2.png "Weatherman - Weather in Toronto, Canada")
+![Weatherman Screenshot 3](src/assets/img/screenshot-3.png "Weatherman - Invalid Input")
