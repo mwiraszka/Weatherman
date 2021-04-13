@@ -11,7 +11,7 @@ describe('Weatherman App', () => {
 
   it('should display welcome message', async () => {
     await page.navigateTo()
-    expect(await page.getTitleText()).toEqual('Weatherman')
+    expect(await page.getTitleText()).toContain('Weatherman  (v1.0.0)')
   })
 
   afterEach(async () => {

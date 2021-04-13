@@ -1,0 +1,84 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+/* Weatherman color theme */
+$weatherman-primary: mat-palette($mat-teal, 800);
+$weatherman-accent: mat-palette($mat-blue-grey, 800);
+$weatherman-theme: mat-light-theme(
+  (
+    color: (
+      primary: $weatherman-primary,
+      accent: $weatherman-accent,
+    ),
+  )
+);
+@include angular-material-theme($weatherman-theme);
+
+.primary-color {
+  color: mat-color($weatherman-primary);
+}
+
+.accent-color {
+  color: mat-color($weatherman-accent);
+}
+
+/* Element styles */
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  background-color: #fcfcfc;
+}
+img {
+  transform: scale(2, 2);
+  -ms-transform: scale(2, 2);
+  -webkit-transform: scale(2, 2);
+  margin: 20px 0 40px 10px;
+}
+
+/* Class styles */
+.vertical-margin {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.no-vertical-margin {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.right {
+  text-align: right;
+}
+
+.slightly-smaller {
+  font-size: 80%;
+}
+
+.smaller {
+  font-size: 60%;
+}
+
+.overlined {
+  border-top: 2px solid mat-color($weatherman-accent);
+  padding-top: 8px;
+}
+
+.oblique {
+  font-style: oblique;
+}
+
+.super {
+  vertical-align: super;
+}
+
+.mat-caption {
+  font-size: 15px;
+}
+
+.mat-title {
+  font-size: 23px;
+}

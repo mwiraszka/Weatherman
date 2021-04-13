@@ -1,10 +1,11 @@
 import { ICurrentWeather } from '../interfaces'
 
 export const fakeWeather: ICurrentWeather = {
-  city: 'New New York',
-  country: 'Planet Earth',
+  city: 'New York',
+  country: 'USA',
   date: 1485789600,
+  utcOffset: null,
   image: '../../assets/img/sunny.svg',
-  temperature: 50,
+  temperature: 30,
   description: 'super sunny',
 }

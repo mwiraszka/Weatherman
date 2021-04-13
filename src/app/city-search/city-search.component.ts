@@ -12,11 +12,11 @@ export class CitySearchComponent {
   search = new FormControl('', [
     Validators.required,
     Validators.minLength(2),
-    Validators.maxLength(30),
+    Validators.maxLength(25),
     Validators.pattern('^[a-zA-Z0-9,. ]*$'),
   ])
 
-  // Wait .5s between keyups to emit next value; only emit if
+  // Wait 0.5s between keyups to emit next value; only emit if
   // form validators pass; send value to doSearch method as a
   // side effect with tap operator so that subscription persists
   constructor(private weatherService: WeatherService) {
@@ -44,7 +44,7 @@ export class CitySearchComponent {
     } else if (this.search.hasError('maxlength')) {
       return 'Please try a shorter location name'
     } else if (this.search.hasError('pattern')) {
-      return 'Please input a valid city name or postcode'
+      return 'Please input a valid city name or postal code'
     } else {
       return ''
     }

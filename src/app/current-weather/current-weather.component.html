@@ -1,26 +1,29 @@
-<div *ngIf='current$ | async as current; else loading'>
+<div *ngIf="current$ | async as current; else loading">
   <div fxLayout="row">
-    <div fxFlex="70%" class="mat-title no-margin">
-      {{ current.city | slice:0:15 }}, {{ current.country }}
+    <div fxFlex="60%" class="mat-title no-vertical-margin">
+      {{ current.city | slice:0:15 }},<br>
+      {{ current.country | slice:0:15 }}<br>
+      <span *ngIf="current.utcOffset" class="smaller">({{ current.utcOffset }} GMT)</span>
     </div>
-    <div fxFlex class="right mat-h3 no-margin">
-      {{ current.date | date:'EEEE' }},
-      {{ current.date | date:'MMMM d' }}<sup>{{ getOrdinal(current.date) }}</sup>
+    <div fxFlex class="right mat-h3 no-vertical-margin accent-color">
+      <span class="slightly-smaller">Retrieved on</span><br>
+      <span class="overlined">{{ current.date | date:'EEEE, MMMM d' }}
+        <sup>{{ getOrdinal(current.date) }}</sup>
+      </span>
+      {{ current.date | date:'h:mm a' }}
     </div>
   </div>
   <div fxLayout="row" fxLayoutAlign="center center">
     <div fxFlex="66%">
       <img [src]="current.image" [alt]="current.description" />
     </div>
-    <div fxFlex class="right mat-display-3 no-margin">
-      {{ current.temperature | number:'1.0-0' }}
-      <!--
-      Remove blank space added by newline span element by adding this comment
-      --><span class="unit mat-display-1">&#8451;</span>
+    <div fxFlex class="right mat-display-4 no-vertical-margin primary-color">
+      {{ current.temperature | number:'1.0-0' }}<span
+        class="super mat-display-1">&#8451;</span>
     </div>
   </div>
-  <div fxLayout="row" fxLayoutAlign="center" class="mat-caption">
-    {{ current.description }}
+  <div fxLayout="row" fxLayoutAlign="center" class="mat-caption message accent-color">
+    Weatherman says {{ current.description }}
   </div>
 </div>
 <ng-template #loading>

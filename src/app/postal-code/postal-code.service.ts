@@ -18,6 +18,7 @@ export interface IPostalCodeData {
 }
 
 export interface IPostalCodeService {
+  // Interface method imported and used within weather service
   resolvePostalCode(postalCode: string): Observable<IPostalCode>
 }
 
@@ -26,11 +27,16 @@ export class PostalCodeService implements IPostalCodeService {
   constructor(private httpClient: HttpClient) {}
 
   resolvePostalCode(postalCode: string): Observable<IPostalCode> {
+    // Prepare parameters for query to GeoNames API
     const uriParams = new HttpParams()
       .set('maxRows', '1')
       .set('username', environment.username)
       .set('postalcode', postalCode)
 
+    // Query with https base URL if in production mode so as to avoid any mixed content
+    // issues; mergeMap to map to the postalCodes attribute returned while ensuring wrong
+    // type for 'data' won't throw error; return 'null' if observable completes without
+    // emitting any next value, i.e. not a valid postal code
     return this.httpClient
       .get<IPostalCodeData>(
         `${environment.baseUrl}${environment.geonamesApi}.geonames.org/postalCodeSearchJSON`,
@@ -38,7 +44,7 @@ export class PostalCodeService implements IPostalCodeService {
       )
       .pipe(
         mergeMap((data) => data.postalCodes),
-        defaultIfEmpty(null)
+        defaultIfEmpty()
       )
   }
 }
