@@ -1,15 +1,17 @@
 <div *ngIf="current$ | async as current; else loading">
-  <div fxLayout="row">
-    <div fxFlex="60%" class="mat-title no-vertical-margin">
+  <div fxLayout="column" fxLayout.gt-sm="row">
+    <div fxFlex="50%" class="mat-title no-vertical-margin">
       {{ current.city | slice:0:15 }},<br>
       {{ current.country | slice:0:15 }}<br>
       <span *ngIf="current.utcOffset" class="smaller">({{ current.utcOffset }} GMT)</span>
     </div>
     <div fxFlex class="right mat-h3 no-vertical-margin accent-color">
-      <span class="slightly-smaller">Retrieved on</span><br>
-      <span class="overlined">{{ current.date | date:'EEEE, MMMM d' }}
-        <sup>{{ getOrdinal(current.date) }}</sup>
-      </span>
+      <span class="smaller">
+        Retrieved on
+      </span><br>
+      <span class="overlined">
+        {{ current.date | date:'EEEE, MMMM d' }}<sup>{{ getOrdinal(current.date) }}</sup>
+      </span><br>
       {{ current.date | date:'h:mm a' }}
     </div>
   </div>
@@ -22,8 +24,8 @@
         class="super mat-display-1">&#8451;</span>
     </div>
   </div>
-  <div fxLayout="row" fxLayoutAlign="center" class="mat-caption message accent-color">
-    Weatherman says {{ current.description }}
+  <div fxLayout="row" fxLayoutAlign="center" class="mat-caption accent-color">
+    {{ current.description }}
   </div>
 </div>
 <ng-template #loading>

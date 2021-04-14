@@ -1,5 +1,6 @@
 # Weatherman
-<i>Reporting the weather. Saving lives.</i>
+<i>Reporting the weather. Saving lives.</i><br>
+Live website available at:&nbsp;&nbsp;&nbsp; [https://weatherman-mwiraszka.vercel.app/](https://weatherman-mwiraszka.vercel.app/)
 <hr><br>
 
 [Weatherman](https://www.weatherman-mwiraszka.vercel.app) is a desktop application generated using [Angular CLI](https://github.com/angular/angular-cli) (version 11.2.3) and deployed to [Vercel](https://vercel.com/). The app retrieves the current weather for any inputted location –– either by city name or postal code –– through requests to [OpenWeatherMap](https://openweathermap.org/) and [GeoNames](https://www.geonames.org/)' APIs. Weatherman features a modern and intuitive UX through a set of robust form validators, search-as-you-type functionality, as well as Angular Material's many components and style themes.
@@ -24,6 +25,11 @@ If you wish to contribute to the development of this project, the following comm
 This project uses [SemVer](http://semver.org) for versioning.
 * <i>13.04.2021</i> - **Version 1.0.0**:
     * Initial release
+* <i>14.04.2021</i> - **Version 1.1.0**:
+    * Improved design for smaller viewport
+    * Version number in header now links to this github repo
+    * Hyphen added to list of valid input characters
+    * Various miscellaneous styling improvements and bug fixes
 <br><br>
 
 ## Author(s)
@@ -41,7 +47,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 * [Doguhan Uluca](https://github.com/duluca "Doguhan's Github page") for sharing his wealth of knowledge on everything Angular
 <br><br>
 
-## Application Screenshot
-![Weatherman Screenshot 1](src/assets/img/screenshot-1.png "Weatherman - Landing Page")
-![Weatherman Screenshot 2](src/assets/img/screenshot-2.png "Weatherman - Weather in Toronto, Canada")
-![Weatherman Screenshot 3](src/assets/img/screenshot-3.png "Weatherman - Invalid Input")
+## Application Screenshots
+![Weatherman Screenshot 1](screenshots/screenshot-1.png "Weatherman - Narrow Viewport")
+![Weatherman Screenshot 2](screenshots/screenshot-2.png "Weatherman - Wide Viewport")
+![Weatherman Screenshot 3](screenshots/screenshot-3.png "Weatherman - Invalid Input")
+
+[(screenshots of older versions)](https://github.com/mwiraszka/Weatherman/tree/main/screenshots)

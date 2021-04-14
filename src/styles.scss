@@ -2,8 +2,8 @@
 @include mat-core();
 
 /* Weatherman color theme */
-$weatherman-primary: mat-palette($mat-teal, 800);
-$weatherman-accent: mat-palette($mat-blue-grey, 800);
+$weatherman-primary: mat-palette($mat-indigo, 700);
+$weatherman-accent: mat-palette($mat-blue-grey, 900);
 $weatherman-theme: mat-light-theme(
   (
     color: (
@@ -22,24 +22,28 @@ $weatherman-theme: mat-light-theme(
   color: mat-color($weatherman-accent);
 }
 
-/* Element styles */
 html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
   background-color: #fcfcfc;
 }
+
 img {
-  transform: scale(2, 2);
-  -ms-transform: scale(2, 2);
-  -webkit-transform: scale(2, 2);
-  margin: 20px 0 40px 10px;
+  transform: scale(2.5, 2.5);
+  -ms-transform: scale(2.5, 2.5);
+  -webkit-transform: scale(2.5, 2.5);
+  margin-left: 20px;
 }
 
-/* Class styles */
+button {
+  border-radius: 6px;
+}
+
 .vertical-margin {
   margin-top: 16px;
   margin-bottom: 16px;
@@ -54,16 +58,12 @@ img {
   text-align: right;
 }
 
-.slightly-smaller {
+.smaller {
   font-size: 80%;
 }
 
-.smaller {
-  font-size: 60%;
-}
-
 .overlined {
-  border-top: 2px solid mat-color($weatherman-accent);
+  border-top: 1px solid mat-color($weatherman-accent, 600);
   padding-top: 8px;
 }
 
@@ -75,10 +75,37 @@ img {
   vertical-align: super;
 }
 
-.mat-caption {
-  font-size: 15px;
+.title-banner {
+  font-size: 42px;
 }
 
-.mat-title {
-  font-size: 23px;
+mat-toolbar button {
+  cursor: pointer;
+  font-size: 15px;
+  margin-left: 15px;
+  padding: 2px 4px;
+}
+
+mat-toolbar.lower {
+  font-size: 16px;
+  font-weight: lighter;
+  font-style: oblique;
+}
+
+.mat-caption {
+  font-size: 16px;
+  font-weight: lighter;
+}
+
+mat-card-header {
+  padding: 0;
+}
+
+form {
+  margin: 30px 0;
+}
+
+mat-hint span {
+  font-size: 14px;
+  padding: 5px;
 }

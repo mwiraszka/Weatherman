@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { BehaviorSubject, Observable } from 'rxjs'
+import { Observable, Subject } from 'rxjs'
 import { map, switchMap } from 'rxjs/operators'
 
 import AllCountryCodes from '../../assets/all-country-codes.json'
@@ -24,29 +24,28 @@ interface Coordinates {
 
 export interface IWeatherService {
   // Methods imported and used in city search component
-  readonly currentWeather$: BehaviorSubject<ICurrentWeather>
+  readonly currentWeather$: Subject<ICurrentWeather>
   getCurrentWeather(search: string, country?: string): Observable<ICurrentWeather>
   getCurrentWeatherByCoords(coords: Coordinates): Observable<ICurrentWeather>
 }
 
 @Injectable({ providedIn: 'root' })
 export class WeatherService implements IWeatherService {
-  // Initialize behavior subject with some dummy data
-  readonly currentWeather$ = new BehaviorSubject<ICurrentWeather>({
-    city: 'New New York',
-    country: 'Planet Earth',
-    date: Date.now(),
-    utcOffset: null,
-    image: '../../assets/img/sunny.svg',
-    temperature: 99,
-    description: "it's cozy.",
-  })
+  readonly currentWeather$ = new Subject<ICurrentWeather>()
 
   constructor(
     private httpClient: HttpClient,
     private postalCodeService: PostalCodeService,
     private timezoneService: TimezoneService
   ) {}
+
+  updateCurrentWeather(search: string, country?: string): void {
+    // Subscribe to new weather data stream with every new search (i.e. every 0.5 seconds
+    // with the currently implemented type-ahead feature)
+    this.getCurrentWeather(search, country).subscribe((weather) =>
+      this.currentWeather$.next(weather)
+    )
+  }
 
   getCurrentWeather(searchText: string, country?: string): Observable<ICurrentWeather> {
     // If imported resolvePostalCode method does not return null, i.e. the User's input
@@ -82,14 +81,6 @@ export class WeatherService implements IWeatherService {
     return this.getCurrentWeatherHelper(uriParams)
   }
 
-  updateCurrentWeather(search: string, country?: string): void {
-    // Subscribe to new weather data stream with every new search (i.e. every 0.5 seconds
-    // with the currently implemented type-ahead feature)
-    this.getCurrentWeather(search, country).subscribe((weather) =>
-      this.currentWeather$.next(weather)
-    )
-  }
-
   private getCurrentWeatherHelper(uriParams: HttpParams): Observable<ICurrentWeather> {
     // Use https base URL when in production so as to avoid mixed content issues; query
     // with the prepared set of parameters (whether that's longitude and latitude derived
@@ -109,29 +100,6 @@ export class WeatherService implements IWeatherService {
     const countryObj: any = AllCountryCodes.find(
       (country) => country.Code === data.sys.country
     )
-
-    // Change description to match grammar of sentence 'Weatherman says...'
-    let desc = ''
-    switch (data.weather[0].description) {
-      case 'clear sky':
-        desc = 'clear skies!'
-        break
-      case 'snow':
-        desc = "it's snowing."
-        break
-      case 'few clouds':
-        desc = "it's just a little cloudy."
-        break
-      case 'overcast clouds':
-        desc = 'there are some overcast clouds.'
-        break
-      case 'light rain':
-      case 'moderate rain':
-        desc = "it's going to rain some."
-        break
-      default:
-        desc = data.weather[0].description + '.'
-    }
 
     // Get UTC offset of this location, using both city name and country name; find the
     // timezone that by finding the number that's common between the two
@@ -154,11 +122,11 @@ export class WeatherService implements IWeatherService {
     return {
       city: data.name,
       country: countryObj ? countryObj.Name : data.sys.country,
-      date: (data.dt + 3600) * 1000,
+      date: data.dt * 1000,
       utcOffset,
       image: `http://openweathermap.org/img/w/${data.weather[0].icon}.png`,
       temperature: this.convertKelvinToCelsius(data.main.temp),
-      description: desc,
+      description: data.weather[0].description,
     }
   }
 

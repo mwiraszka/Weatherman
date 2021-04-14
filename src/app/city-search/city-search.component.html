@@ -1,11 +1,19 @@
-<form style="margin-bottom: 20px;">
-  <mat-form-field appearance="outline" style="width:400px">
-    <mat-label>City or Postal Code</mat-label>
-    <mat-hint>e.g. 'Warsaw, Poland'</mat-hint>
-    <mat-icon matPrefix>search</mat-icon>
-    <input matInput aria-label="City or Postal Code" [formControl]="search">
-    <mat-error *ngIf="search.invalid">
-      {{ getErrorMessage() }}
-    </mat-error>
-  </mat-form-field>
+<form>
+  <div fxLayout="row">
+    <mat-form-field fxFlex="300px" fxFlex.gt-sm="450px" appearance="outline">
+      <mat-label>
+        City or Postal Code
+      </mat-label>
+      <mat-hint>
+        e.g. <span>"London, CA"</span> or <span>"N6J"</span>
+      </mat-hint>
+      <mat-icon matPrefix>
+        search
+      </mat-icon>
+      <input matInput aria-label="City or Postal Code" [formControl]="search">
+      <mat-error *ngIf="search.invalid">
+        {{ getErrorMessage() }}
+      </mat-error>
+    </mat-form-field>
+  </div>
 </form>
