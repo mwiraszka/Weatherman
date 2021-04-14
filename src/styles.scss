@@ -41,7 +41,13 @@ img {
 }
 
 button {
+  visibility: visible;
   border-radius: 6px;
+}
+@media only screen and (max-width: 380px) {
+  button {
+    visibility: hidden;
+  }
 }
 
 .vertical-margin {
