@@ -3,7 +3,7 @@
 Live website available at:&nbsp;&nbsp;&nbsp; [weatherman-mwiraszka.vercel.app/](http://weatherman-mwiraszka.vercel.app/)
 <hr><br>
 
-[Weatherman](https://www.weatherman-mwiraszka.vercel.app) is a desktop application generated using [Angular CLI](https://github.com/angular/angular-cli) (version 11.2.3) and deployed to [Vercel](https://vercel.com/). The app retrieves the current weather for any inputted location –– either by city name or postal code –– through requests to [OpenWeatherMap](https://openweathermap.org/) and [GeoNames](https://www.geonames.org/)' APIs. Weatherman features a modern and intuitive UX through a set of robust form validators, search-as-you-type functionality, as well as Angular Material's many components and style themes.
+[Weatherman](https://www.weatherman-mwiraszka.vercel.app) is a single-page web application built using [Angular CLI](https://github.com/angular/angular-cli) (version 11.2.3) and deployed to [Vercel](https://vercel.com/). The app retrieves the current weather for any inputted location –– either by city name or postal code –– through requests to [OpenWeatherMap](https://openweathermap.org/) and [GeoNames](https://www.geonames.org/)' APIs. Weatherman features a modern and intuitive UX through a set of robust form validators, search-as-you-type functionality, as well as Angular Material's many components and style themes.
 
 ## Project Contribution
 
